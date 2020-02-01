@@ -1,0 +1,21 @@
+{
+  "presets": [
+    ["@babel/preset-env"],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    ["module-resolver", {
+      "root": ["./src"]
+    }]
+  ],
+  "env": {
+    "production": {
+      "presets": ["minify"],
+      "plugins": ["transform-remove-console"]
+    },
+    "test": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+  }
+}
