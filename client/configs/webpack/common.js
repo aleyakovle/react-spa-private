@@ -7,10 +7,6 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         modules: [resolve(__dirname, '../../src'), 'node_modules'],
-        "alias": {
-            "react": "preact-compat",
-            "react-dom": "preact-compat"
-        }
     },
     context: resolve(__dirname, '../../src'),
     output: {
