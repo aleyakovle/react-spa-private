@@ -51,7 +51,7 @@ module.exports = {
         'no-useless-constructor': 0,
         'no-restricted-syntax': 1,
         'prefer-template': 1,
-        'react-hooks/exhaustive-deps': 1,
+        // 'react-hooks/exhaustive-deps': 1,
         'prefer-promise-reject-errors': 1,
         'no-prototype-builtins': 1,
         'no-unused-expressions': 1,

@@ -1,10 +1,8 @@
-import * as React from "react";
-import {render} from "react-dom";
-import { App } from "./App";
+/* eslint-env browser */
+import * as React from 'react';
+import { render } from 'react-dom';
+import { App } from 'containers/App';
 
-const rootEl = document.getElementById("root");
+const rootEl = document.getElementById('root');
 
-render(
-    <App/>,
-    rootEl,
-);
+render(<App />, rootEl);

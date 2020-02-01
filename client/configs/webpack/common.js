@@ -1,21 +1,29 @@
-const path = require('path');
-const {resolve} = path;
+// shared config (dev and prod)
+const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: "development",
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    },
-    output: {
-        filename: 'bundle.[hash].js',
-        path: path.resolve(__dirname, '../../dist')
+        modules: [resolve(__dirname, '../../src'), 'node_modules'],
+        "alias": {
+            "react": "preact-compat",
+            "react-dom": "preact-compat"
+        }
     },
     context: resolve(__dirname, '../../src'),
+    output: {
+        publicPath: '/'
+    },
+    devServer: {
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {
                 test: /\.js$/,
-                use: ['babel-loader', 'ts'],
+                use: ['babel-loader', 'source-map-loader'],
                 exclude: /node_modules/,
             },
             {
@@ -27,7 +35,7 @@ module.exports = {
                 use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }],
             },
             {
-                test: /\.(scss|sass)$/,
+                test: /\.scss$/,
                 loaders: [
                     'style-loader',
                     { loader: 'css-loader', options: { importLoaders: 1 } },
