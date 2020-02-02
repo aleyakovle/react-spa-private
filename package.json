@@ -37,6 +37,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@types/jest": "^25.1.1",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.0",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
@@ -81,7 +82,8 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.2",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "workbox-webpack-plugin": "^5.0.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.0",
@@ -89,6 +91,7 @@
     "bootstrap": "^4.4.1",
     "immer": "^5.3.2",
     "localforage": "^1.7.3",
+    "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",

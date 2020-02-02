@@ -1,16 +1,17 @@
 // shared config (dev and prod)
-const {resolve} = require('path');
+const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
-    mode: "development",
+    mode: 'development',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         modules: [resolve(__dirname, '../../src'), 'node_modules'],
     },
     context: resolve(__dirname, '../../src'),
     output: {
-        publicPath: '/'
+        publicPath: '/',
     },
     devServer: {
         historyApiFallback: true,
@@ -32,11 +33,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loaders: [
-                    'style-loader',
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    'sass-loader',
-                ],
+                loaders: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'sass-loader'],
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -48,10 +45,16 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({template: 'index.html.ejs',}),
+        new HtmlWebpackPlugin({ template: 'index.html.ejs' }),
+        new WorkboxPlugin.GenerateSW({
+            // these options encourage the ServiceWorkers to get in there fast
+            // and not allow any straggling "old" SWs to hang around
+            clientsClaim: true,
+            skipWaiting: true,
+        }),
     ],
     externals: {
-        'react': 'React',
+        react: 'React',
         'react-dom': 'ReactDOM',
     },
     performance: {
