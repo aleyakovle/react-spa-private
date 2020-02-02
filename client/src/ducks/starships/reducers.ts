@@ -13,7 +13,7 @@ export const initialStateReducerStarships: IStarshipsState = {
 };
 
 export const starshipReducer = createReducer<IStarshipsState>(initialStateReducerStarships, {
-    [GET_STARSHIPS]: (
+    [GET_STARSHIPS.SUCCESS]: (
         state: IStarshipsState,
     ) =>
         produce(state, draft => {

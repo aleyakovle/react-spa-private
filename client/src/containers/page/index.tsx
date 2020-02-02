@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-import {compose} from "redux";
-import {withPageNameHOC} from "HOCs/with-page-name";
-import {FullHeightWrapper} from "HOCs/full-height-wrapper";
+import { compose } from 'redux';
+import { withPageNameHOC } from 'HOCs/with-page-name';
+import { FullHeightWrapper } from 'HOCs/full-height-wrapper';
 
-const SideMenu = styled.div`
+const Page = styled.div`
     background-color: blue;
     display: flex;
     flex: 1;
@@ -12,13 +12,13 @@ const SideMenu = styled.div`
 
 export const PageContainerComposed: React.FC<any> = () => {
     return (
-        <SideMenu>
+        <Page>
             <p>Side menu</p>
-        </SideMenu>
-    )
+        </Page>
+    );
 };
 
 export const PageContainer = compose(
     withPageNameHOC,
-    FullHeightWrapper,
+    FullHeightWrapper
 )(PageContainerComposed) as React.ComponentType<any>;
