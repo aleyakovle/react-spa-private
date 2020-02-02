@@ -1,5 +1,6 @@
 import {ActionMeta, BaseAction} from "redux-actions";
 import {IActionRequestProgressState} from "utils/action-helpers";
+import {AxiosError, AxiosResponse} from "axios";
 
 export interface IStarshipsFailResponse {
     detail: string,
@@ -38,3 +39,5 @@ export interface IAjaxActionNames {
     REQUEST: string;
     SUCCESS: string;
 }
+
+export type AxiosAnyResponse = AxiosResponse | AxiosError;

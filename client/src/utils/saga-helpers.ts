@@ -55,18 +55,24 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
 
             let request: AxiosResponse<IGetStarshipsSuccessResponse> = yield ApiPromise;
 
+            console.log(request, 'request');
+
             const { transformResponse } = options;
-            if (transformResponse) {
-                request = transformResponse(request, action.payload);
-            }
 
-            const { data } = request;
+            let { data } = request;
 
-            yield put(actionSuccess(data, responseMeta));
-            if (action.meta && action.meta.dispatchOnSuccess) {
-                for (const actionCreator of action.meta.dispatchOnSuccess) {
-                    yield put(actionCreator(data, responseMeta));
+            if (request.status === 200) {
+                if (transformResponse) {
+                    data = transformResponse(data, action.payload);
                 }
+                yield put(actionSuccess(data, responseMeta));
+                if (action.meta && action.meta.dispatchOnSuccess) {
+                    for (const actionCreator of action.meta.dispatchOnSuccess) {
+                        yield put(actionCreator(data, responseMeta));
+                    }
+                }
+            } else {
+                throw new Error('Not acceptable answer');
             }
         } catch (error) {
             const is404 = !!error.message && error.message.includes('404');
@@ -74,7 +80,7 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
                 !!error.message &&
                 (error.message.includes('Could not connect') || error.message.includes('Network Error'));
 
-            let detail = 'The server cannot process the request';
+            let detail = error.message || 'The server cannot process the request';
 
             if (is404) {
                 detail = 'This page does not exist';

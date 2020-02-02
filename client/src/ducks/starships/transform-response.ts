@@ -1,10 +1,14 @@
 import {IStarship} from "dtos/starships";
 import {get} from "lodash";
 
-export const makePageResponseValid = (response: any) => {
-    console.log(response);
-    const starships = get(response, "data.result", []);
-    return starships.map(transformSingleStarship);
+export const makePageResponseValid = (data: any) => {
+    console.log(data, 'response');
+    const starships = get(data, "results", []);
+    const starshipsTransformed = starships.map(transformSingleStarship);
+    if (starships.length) {
+        data.results = starshipsTransformed;
+    }
+    return data;
 };
 
 const transformSingleStarship = (starship: IStarship) => {
