@@ -5,6 +5,7 @@ import { SideMenuContainer } from 'components/side-menu';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
+import {PageContainer} from "containers/page";
 
 const Root = styled.div`
     background-color: green;
@@ -15,30 +16,21 @@ const Root = styled.div`
 `;
 
 class RootContainerComposed extends React.Component<any> {
-    render():
-        | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-        | string
-        | number
-        | {}
-        | React.ReactNodeArray
-        | React.ReactPortal
-        | boolean
-        | null
-        | undefined {
+    render() {
         return (
             <Root>
                 <Container fluid={true}>
                     <Row>
                         <Col xs={12}>
                             <Row>
-                                <Col xs={3}>
+                                <Col className={"d-none d-sm-block"} sm={4} md={3} lg={2}>
                                     <Row>
                                         <SideMenuContainer />
                                     </Row>
                                 </Col>
-                                <Col xs={9}>
+                                <Col xs={12} sm={8} md={3} lg={10}>
                                     <Row>
-                                        <p>Hello</p>
+                                        <PageContainer />
                                     </Row>
                                 </Col>
                             </Row>

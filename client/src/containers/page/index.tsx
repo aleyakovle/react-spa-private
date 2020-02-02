@@ -5,12 +5,12 @@ import {withPageNameHOC} from "HOCs/with-page-name";
 import {FullHeightWrapper} from "HOCs/full-height-wrapper";
 
 const SideMenu = styled.div`
-    background-color: grey;
+    background-color: blue;
     display: flex;
     flex: 1;
 `;
 
-export const SideMenuContainerComposed: React.FC<any> = () => {
+export const PageContainerComposed: React.FC<any> = () => {
     return (
         <SideMenu>
             <p>Side menu</p>
@@ -18,7 +18,7 @@ export const SideMenuContainerComposed: React.FC<any> = () => {
     )
 };
 
-export const SideMenuContainer = compose(
+export const PageContainer = compose(
     withPageNameHOC,
     FullHeightWrapper,
-)(SideMenuContainerComposed) as React.ComponentType<any>;
+)(PageContainerComposed) as React.ComponentType<any>;
