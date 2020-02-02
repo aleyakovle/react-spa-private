@@ -1,14 +1,22 @@
 import React from "react";
 import styled from 'styled-components';
+import {compose} from "redux";
+import {withPageNameHOC} from "HOCs/with-page-name";
+import {FullHeightWrapper} from "HOCs/full-height-wrapper";
 
 const SideMenu = styled.div`
-  width: 500px;
-  height: 500px;
-  background-color: grey;
+    background-color: grey;
 `;
 
-export const SideMenuContainer: React.FC<any> = () => {
+export const SideMenuContainerComposed: React.FC<any> = () => {
     return (
-        <SideMenu/>
+        <SideMenu>
+            <p>Side menu</p>
+        </SideMenu>
     )
 };
+
+export const SideMenuContainer = compose(
+    withPageNameHOC,
+    FullHeightWrapper,
+)(SideMenuContainerComposed) as React.ComponentType<any>;
