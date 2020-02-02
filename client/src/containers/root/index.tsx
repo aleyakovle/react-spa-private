@@ -33,12 +33,12 @@ class RootContainerComposed extends React.Component<any> {
                             <Row>
                                 <Col xs={3}>
                                     <Row>
-                                            <SideMenuContainer />
+                                        <SideMenuContainer />
                                     </Row>
                                 </Col>
                                 <Col xs={9}>
                                     <Row>
-                                            <p>Hello</p>
+                                        <p>Hello</p>
                                     </Row>
                                 </Col>
                             </Row>
@@ -50,6 +50,4 @@ class RootContainerComposed extends React.Component<any> {
     }
 }
 
-export const RootContainer = compose(
-    withPageNameHOC,
-)(RootContainerComposed) as React.ComponentType<any>;
+export const RootContainer = compose(withPageNameHOC)(RootContainerComposed) as React.ComponentType<any>;
