@@ -15,7 +15,7 @@ import {
 } from 'ducks/starships/selectors';
 import { makeGetStarshipsRequestState } from 'ducks/fetching/selectors';
 import { IRootState } from 'ducks/reducers';
-import {Page} from "components/styled-components-custom";
+import {MaterialCard, Page} from "components/styled-components-custom";
 
 const getCurrentPage = makeGetCurrentPage();
 const getNextPageNumber = makeGetNextPageNumber();
@@ -65,9 +65,6 @@ class PageContainerComposed extends React.Component<any> {
             <Page>
                 <Col xs={12}>
                     <Row>
-                        <LinearProgressCustom isFetching={isFetching} />
-                    </Row>
-                    <Row>
                         <Col xs={2}>
                             <PageControl
                                 isActive={isFetching}
@@ -77,7 +74,10 @@ class PageContainerComposed extends React.Component<any> {
                             />
                         </Col>
                         <Col xs={8}>
-                            <StarShipsList starships={currentPageStarships} />
+                            <MaterialCard>
+                                <LinearProgressCustom isFetching={isFetching} />
+                                <StarShipsList starships={currentPageStarships} />
+                            </MaterialCard>
                         </Col>
                         <Col xs={2}>
                             <PageControl

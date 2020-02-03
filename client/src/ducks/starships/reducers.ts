@@ -17,7 +17,9 @@ export const starshipReducer = createReducer<IStarshipsState>(initialStateReduce
         produce(state, (draft) => {
             const pagesNew = [...state.pages];
 
-            pagesNew.push(action.payload);
+            if (!pagesNew.some(item => item.next === action.payload.next)) {
+                pagesNew.push(action.payload);
+            }
 
             draft.currentPage = action.payload;
             draft.pages = pagesNew;

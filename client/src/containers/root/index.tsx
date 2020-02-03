@@ -5,6 +5,7 @@ import { SideMenuContainer } from 'components/side-menu';
 import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
 import { PageContainer } from 'containers/page';
+import { MaterialCard } from 'components/styled-components-custom';
 
 class RootContainerComposed extends React.Component<any> {
     render() {
@@ -13,12 +14,12 @@ class RootContainerComposed extends React.Component<any> {
                 <Row>
                     <Col xs={12}>
                         <Row>
-                            <Col className={'d-none d-sm-block'} sm={4} md={3}>
-                                <Row>
+                            <Col className={'d-none d-sm-block'} sm={3} md={2}>
+                                <MaterialCard>
                                     <SideMenuContainer />
-                                </Row>
+                                </MaterialCard>
                             </Col>
-                            <Col xs={12} sm={8} md={9}>
+                            <Col xs={12} sm={9} md={10}>
                                 <Row>
                                     <PageContainer />
                                 </Row>

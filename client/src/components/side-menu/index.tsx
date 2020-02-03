@@ -1,20 +1,21 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withPageNameHOC } from 'HOCs/with-page-name';
+import React, {useMemo} from 'react';
 import { useSelector } from 'react-redux';
 import { makeGetAllPageLinks } from 'ducks/starships/selectors';
 import { SideMenuItem } from 'components/side-menu-item';
+import {SideMenuList} from "components/styled-components-custom";
 
-export const SideMenuContainerComposed: React.FC<any> = () => {
+export const SideMenuContainer: React.FC<any> = () => {
     const pageLinks = useSelector(makeGetAllPageLinks());
 
+    const renderLinks = useMemo(() => (
+        pageLinks.map((item) => (
+            <SideMenuItem key={item} url={item} />
+        ))
+    ), [pageLinks.length]);
+
     return (
-        <ul>
-            {pageLinks.map((item) => (
-                <SideMenuItem url={item} />
-            ))}
-        </ul>
+        <SideMenuList>
+            {renderLinks}
+        </SideMenuList>
     );
 };
-
-export const SideMenuContainer = compose(withPageNameHOC)(SideMenuContainerComposed) as React.ComponentType<any>;
