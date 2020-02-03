@@ -2,6 +2,7 @@ import { createReducer } from 'redux-create-reducer';
 import produce from 'immer';
 import { GET_STARSHIPS } from 'ducks/starships/action-types';
 import { IGetStarshipsSuccessResponse } from 'dtos/starships';
+import {findCurrentPageNumber, findPageNumber} from "utils/common";
 
 export interface IStarshipsState {
     currentPage?: IGetStarshipsSuccessResponse;
@@ -13,6 +14,25 @@ export const initialStateReducerStarships: IStarshipsState = {
 };
 
 export const starshipReducer = createReducer<IStarshipsState>(initialStateReducerStarships, {
+    [GET_STARSHIPS.REQUEST]: (state: IStarshipsState, action: any) =>
+        produce(state, (draft) => {
+            const pagesNew = [...state.pages];
+
+            const possibleIndexOf = pagesNew.findIndex(item => {
+                const safePrevious = findPageNumber(item.previous);
+                const safeNext = findPageNumber(item.next);
+                const safePayload = findPageNumber(action.payload);
+                if (findCurrentPageNumber(safePrevious, safeNext) === safePayload) {
+                    return true;
+                }
+            });
+
+            if (possibleIndexOf !== -1) {
+                draft.currentPage = pagesNew[possibleIndexOf];
+            }
+
+            return draft;
+        }),
     [GET_STARSHIPS.SUCCESS]: (state: IStarshipsState, action: any) =>
         produce(state, (draft) => {
             const pagesNew = [...state.pages];

@@ -4,9 +4,11 @@ import {SET_ERROR_MESSAGE_TOAST} from "ducks/uiManager/action-types";
 import {setErrorMessageToast} from "ducks/uiManager/actions";
 
 const sagas = {
-    * [SET_ERROR_MESSAGE_TOAST]() {
+    * [SET_ERROR_MESSAGE_TOAST](action: any) {
         yield delay(2500);
-        yield put(setErrorMessageToast());
+        if (action.payload) {
+            yield put(setErrorMessageToast());
+        }
     },
 };
 

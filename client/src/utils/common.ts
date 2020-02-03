@@ -14,6 +14,19 @@ export const findPageNumber = (url: string | null) : number | undefined => {
     } return undefined;
 };
 
+export const findCurrentPageNumber = (prevPageNumber: number | undefined | null, nextPageNumber: number | undefined | null) => {
+    const lastPage = !nextPageNumber && prevPageNumber;
+    const hasPrevAndNext = nextPageNumber && prevPageNumber && (nextPageNumber - prevPageNumber === 2);
+
+    if (!prevPageNumber) {
+        return 1;
+    } else if (lastPage || hasPrevAndNext) {
+        return prevPageNumber + 1;
+    }
+
+    return undefined;
+};
+
 export const buildImgUrl = (model: string, name: string) => {
     return `https://www.googleapis.com/customsearch/v1/?q=${name} ${model}&num=1&start=1&imgSize=medium&searchType=image&key=${kkk}&cx=${cxx}`;
 };
