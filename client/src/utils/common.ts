@@ -32,8 +32,8 @@ export const buildImgUrl = (model: string, name: string) => {
 };
 
 export const getPercentsHyperDrive = (hyperDriveRating: string) => {
-    console.log(hyperDriveRating, 'hyperDriveRating');
     const hyperDriveRatingToNumber = Number(hyperDriveRating);
+
     if (!isNaN(hyperDriveRatingToNumber)) {
         return hyperDriveRatingToNumber / 6 * 100;
     }
