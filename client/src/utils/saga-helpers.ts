@@ -24,11 +24,6 @@ export const processSagas = (
         ),
     );
 
-export interface ISagaInitActionMeta {
-    dispatchOnSuccess?: Array<(data: any, meta: { originalAction: ActionMeta<any, any> }) => ActionMeta<any, any>>;
-    dispatchOnError?: Array<(error: Error, meta: { originalAction: ActionMeta<any, any> }) => ActionMeta<any, any>>;
-}
-
 export const buildResponseActionMeta = (action: ActionMeta<any, any>, options: IRequestCallParams) => {
     return {
         ...action.meta,
@@ -38,7 +33,7 @@ export const buildResponseActionMeta = (action: ActionMeta<any, any>, options: I
 };
 
 export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
-    function*(action: ActionMeta<any, ISagaInitActionMeta>) {
+    function*(action: ActionMeta<any, any>) {
         const { success: actionSuccess, failure: actionFailure } = options.actions;
 
         const responseMeta = buildResponseActionMeta(action, options);
@@ -55,22 +50,16 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
 
             let request: AxiosResponse<IGetStarshipsSuccessResponse> = yield ApiPromise;
 
-            console.log(request, 'request');
-
-            const { transformResponse } = options;
-
-            let { data } = request;
-
             if (request.status === 200) {
+                const { transformResponse } = options;
+                let { data } = request;
+
                 if (transformResponse) {
                     data = transformResponse(data, action.payload);
                 }
+
                 yield put(actionSuccess(data, responseMeta));
-                if (action.meta && action.meta.dispatchOnSuccess) {
-                    for (const actionCreator of action.meta.dispatchOnSuccess) {
-                        yield put(actionCreator(data, responseMeta));
-                    }
-                }
+
             } else {
                 throw new Error('Not acceptable answer');
             }

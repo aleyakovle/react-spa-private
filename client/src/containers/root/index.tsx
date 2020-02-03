@@ -1,4 +1,4 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import { compose } from 'redux';
 import { withPageNameHOC } from 'HOCs/with-page-name';
 import { SideMenuContainer } from 'components/side-menu';
@@ -6,29 +6,15 @@ import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
 import {PageContainer} from "containers/page";
-import {getStarships} from "ducks/starships/actions";
-import {connect} from "react-redux";
 
 const Root = styled.div`
     background-color: green;
-    display: flex;
-    flex: 1;
     min-height: 100%;
     height: 100%;
+    max-width: ${window.innerWidth}px;
 `;
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => {
-    return {
-        getStarships: () => dispatch(getStarships.request(undefined, undefined))
-    }
-};
-
 class RootContainerComposed extends React.Component<any> {
-    componentDidMount(): void {
-        const { getStarships } = this.props;
-        getStarships();
-    }
-
     render() {
         return (
             <Root>
@@ -57,8 +43,4 @@ class RootContainerComposed extends React.Component<any> {
 
 export const RootContainer = compose(
     withPageNameHOC,
-    connect(
-        undefined,
-        mapDispatchToProps,
-    ),
 )(RootContainerComposed) as React.ComponentType<any>;

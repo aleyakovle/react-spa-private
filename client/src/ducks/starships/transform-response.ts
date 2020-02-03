@@ -8,6 +8,9 @@ export const makePageResponseValid = (data: any) => {
     if (starships.length) {
         data.results = starshipsTransformed;
     }
+
+    console.log(data, 'data makePageResponseValid');
+
     return data;
 };
 

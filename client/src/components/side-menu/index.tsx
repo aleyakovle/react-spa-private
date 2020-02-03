@@ -6,8 +6,8 @@ import {FullHeightWrapper} from "HOCs/full-height-wrapper";
 
 const SideMenu = styled.div`
     background-color: grey;
-    display: flex;
-    flex: 1;
+    max-width: 100%;
+    max-height: 100%;
 `;
 
 export const SideMenuContainerComposed: React.FC<any> = () => {

@@ -11,17 +11,33 @@ export interface IStarshipsState {
 }
 
 export const initialStateReducerStarships: IStarshipsState = {
-    currentPage: 0,
+    currentPage: 1,
     pages: []
 };
 
 export const starshipReducer = createReducer<IStarshipsState>(initialStateReducerStarships, {
+    [GET_STARSHIPS.REQUEST]: (
+        state: IStarshipsState,
+        action: any,
+    ) =>
+        produce(state, draft => {
+            console.log(state, 'state');
+            console.log(action, 'action');
+            // const pagesNew = [...state.pages];
+            // pagesNew[state.currentPage - 1] = action;
+            // draft.pages = pagesNew;
+            return draft;
+        }),
     [GET_STARSHIPS.SUCCESS]: (
         state: IStarshipsState,
         action: any,
     ) =>
         produce(state, draft => {
+            console.log(state, 'state');
             console.log(action, 'action');
+            const pagesNew = [...state.pages];
+            pagesNew[state.currentPage - 1] = action.payload;
+            draft.pages = pagesNew;
             return draft;
         }),
 });

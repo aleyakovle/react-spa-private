@@ -3,9 +3,6 @@ import styled from 'styled-components';
 
 const FullHeight = styled.div`
     height: ${window.innerHeight}px;
-    background-color: red;
-    display: flex;
-    flex: 1;
 `;
 
 export function FullHeightWrapper(RawComponent: any): any {

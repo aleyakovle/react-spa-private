@@ -1,6 +1,6 @@
 export const makePageRequestValid = (request: any) => {
     if (typeof request === 'undefined' || !isNaN(request)) {
-        request = 4;
+        request = 1;
     }
     return request;
 };
