@@ -8,8 +8,8 @@ export const SideMenuContainer: React.FC<any> = () => {
     const pageLinks = useSelector(makeGetAllPageLinks());
 
     const renderLinks = useMemo(() => (
-        pageLinks.map((item) => (
-            <SideMenuItem key={item} url={item} />
+        pageLinks.map((item, index) => (
+            <SideMenuItem key={item} url={item} index={index} />
         ))
     ), [pageLinks.length]);
 

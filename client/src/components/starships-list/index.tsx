@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import { IStarship } from 'dtos/starships';
 import { StarShipsListItem } from 'components/starship-list-item';
 
@@ -9,7 +9,7 @@ interface IStarShipsList {
 export const StarShipsListComponent: React.FC<IStarShipsList> = (props) => {
     const { starships } = props;
 
-    const renderStarships = useMemo(() => (
+    const renderStarships = () => (
         starships.map((item: IStarship) => (
             <StarShipsListItem
                 key={item.model + item.name}
@@ -20,11 +20,11 @@ export const StarShipsListComponent: React.FC<IStarShipsList> = (props) => {
                 hyperdrive_rating={item.hyperdrive_rating}
             />
         ))
-    ), [starships.length]);
+    );
 
     return (
         <div>
-            {renderStarships}
+            {renderStarships()}
         </div>
     );
 };

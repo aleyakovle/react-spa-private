@@ -1,14 +1,18 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useMemo} from "react";
 
 import {useTitleFromURL} from "utils/common";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getStarships} from "ducks/starships/actions";
 import {SideMenuListItem} from "components/styled-components-custom";
+import {makeGetCurrentPageNumber} from "ducks/starships/selectors";
 
 export const SideMenuItem: React.FC<any> = (props: any) => {
-    const { url } = props;
+    const { url, index } = props;
     const dispatch = useDispatch();
     const titleFromURL = useTitleFromURL(url);
+    const currentPageNumber = useSelector(makeGetCurrentPageNumber());
+
+
 
     const liTitle = titleFromURL ? `Page ${titleFromURL}` : `Page Corrupted`;
 
@@ -16,10 +20,15 @@ export const SideMenuItem: React.FC<any> = (props: any) => {
         dispatch(getStarships.request(url, undefined));
     }, []);
 
+    const renderIsCurrentPage = useMemo(() => {
+        console.log(currentPageNumber, index, 'currentPageNumber');
+        return currentPageNumber === index + 1 ? 'o' : '';
+    }, [currentPageNumber]);
+
     return (
         <SideMenuListItem>
             <div onClick={onPageClick}>
-                <span>{liTitle}</span>
+                <span>{liTitle} {renderIsCurrentPage}</span>
             </div>
         </SideMenuListItem>
     )
