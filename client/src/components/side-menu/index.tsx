@@ -2,23 +2,28 @@ import React from "react";
 import styled from 'styled-components';
 import {compose} from "redux";
 import {withPageNameHOC} from "HOCs/with-page-name";
-import {FullHeightWrapper} from "HOCs/full-height-wrapper";
+import {useSelector} from "react-redux";
+import {makeGetAllPageLinks} from "ducks/starships/selectors";
+import {SideMenuItem} from "components/side-menu-item";
+// import {FullHeightWrapper} from "HOCs/full-height-wrapper";
 
 const SideMenu = styled.div`
-    background-color: grey;
-    max-width: 100%;
-    max-height: 100%;
+    // background-color: grey;
 `;
 
 export const SideMenuContainerComposed: React.FC<any> = () => {
+    const pageLinks = useSelector(makeGetAllPageLinks());
+
     return (
         <SideMenu>
-            <p>Side menu</p>
+            <ul>
+                {pageLinks.map(item => <SideMenuItem url={item} />)}
+            </ul>
         </SideMenu>
     )
 };
 
 export const SideMenuContainer = compose(
     withPageNameHOC,
-    FullHeightWrapper,
+    // FullHeightWrapper,
 )(SideMenuContainerComposed) as React.ComponentType<any>;

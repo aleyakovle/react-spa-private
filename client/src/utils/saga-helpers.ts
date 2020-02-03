@@ -39,23 +39,28 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
         const responseMeta = buildResponseActionMeta(action, options);
 
         try {
-            let params = get(action, 'payload.params', undefined);
+            console.log(action, 'action');
+            console.log(options, 'options');
+
+            let params = get(action, 'payload', undefined);
 
             const { transformRequest } = options;
             if (transformRequest) {
-                params = transformRequest(params, action.payload);
+                params = transformRequest(params);
             }
 
             const ApiPromise = options.execute(params);
 
             let request: AxiosResponse<IGetStarshipsSuccessResponse> = yield ApiPromise;
 
+            console.log(request, 'request request request');
+
             if (request.status === 200) {
                 const { transformResponse } = options;
                 let { data } = request;
 
                 if (transformResponse) {
-                    data = transformResponse(data, action.payload);
+                    data = transformResponse(data);
                 }
 
                 yield put(actionSuccess(data, responseMeta));

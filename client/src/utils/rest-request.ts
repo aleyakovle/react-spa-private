@@ -46,7 +46,12 @@ class RESTRequest {
             params: requestParams
         } = data as IRESTExecuteParams;
 
-        return `${this.restURL}${method}/?page=${requestParams}`;
+        console.log(requestParams, 'requestParams');
+
+        if (!String(requestParams).includes('https://')) {
+            return `${this.restURL}${method}/?page=${requestParams}`;
+        }
+        return requestParams;
     };
 
     private sendResponse = (options: ISendRPCResponseOptions) => {

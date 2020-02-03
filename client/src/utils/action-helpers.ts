@@ -8,12 +8,6 @@ import {
 } from "app-constants";
 import {ActionMeta, createAction} from "redux-actions";
 
-export interface IActionRequestProgressState {
-    received: number;
-    total: number;
-    percentage: number;
-}
-
 export const createActionSimple = <P = any, M = any>(type: string) =>
     createAction<P, M, P, M>(type, payload => payload, (_, meta) => meta);
 
