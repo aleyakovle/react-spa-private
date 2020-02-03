@@ -2,7 +2,6 @@ import React from 'react';
 import { compose } from 'redux';
 import { withPageNameHOC } from 'HOCs/with-page-name';
 import { SideMenuContainer } from 'components/side-menu';
-// import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
 import { PageContainer } from 'containers/page';

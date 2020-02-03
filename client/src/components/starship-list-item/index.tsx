@@ -1,11 +1,11 @@
 import React from 'react';
-import {Col, Row} from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap';
 
 interface IStarShipsListItem {
-    starshipName: string,
-    passengers: string,
-    crew: string,
-    hyperdrive_rating: string,
+    starshipName: string;
+    passengers: string;
+    crew: string;
+    hyperdrive_rating: string;
 }
 
 export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) => {
@@ -33,7 +33,6 @@ export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) =>
                 </div>
             </Col>
         </Row>
-
     );
 };
 

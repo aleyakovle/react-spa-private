@@ -1,18 +1,14 @@
-import React from "react";
-import {Button} from "react-bootstrap";
-import {compose} from "redux";
-import {FullHeightWrapper} from "HOCs/full-height-wrapper";
-import styled from "styled-components";
-
-const PageControlWrapper = styled.div`
-    position: fixed;
-`;
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import { compose } from 'redux';
+import { FullHeightWrapper } from 'HOCs/full-height-wrapper';
+import { PageControlWrapper } from 'components/styled-components-custom';
 
 interface IPageControl {
-    isActive: boolean,
-    isDisabled: boolean,
+    isActive: boolean;
+    isDisabled: boolean;
     onClick: () => void;
-    title: string
+    title: string;
 }
 
 const PageControlComposed: React.FC<IPageControl> = (props) => {
@@ -23,9 +19,7 @@ const PageControlComposed: React.FC<IPageControl> = (props) => {
                 {title}
             </Button>
         </PageControlWrapper>
-    )
+    );
 };
 
-export const PageControl = compose(
-    FullHeightWrapper,
-)(PageControlComposed) as React.ComponentType<any>;
+export const PageControl = compose(FullHeightWrapper)(PageControlComposed) as React.ComponentType<any>;

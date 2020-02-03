@@ -1,5 +1,5 @@
 export interface IStarshipsFailResponse {
-    detail: string,
+    detail: string;
 }
 
 export interface IAjaxActionNames {

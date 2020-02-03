@@ -1,13 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const FullHeight = styled.div`
-    height: ${window.innerHeight}px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+import {FullHeight} from "components/styled-components-custom";
 
 export function FullHeightWrapper(RawComponent: any): any {
     return class extends React.Component {

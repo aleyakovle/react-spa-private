@@ -1,11 +1,11 @@
 export interface IGetStarshipsSuccessResponse {
-    next: string | null,
-    previous: string | null,
-    results: IStarship[]
+    next: string | null;
+    previous: string | null;
+    results: IStarship[];
 }
 
 export interface IStarship {
-    [k: string]: any
+    [k: string]: any;
     // name: string,
     // model: string,
     // manufacturer: string,

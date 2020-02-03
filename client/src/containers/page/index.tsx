@@ -1,5 +1,4 @@
 import React, { Dispatch } from 'react';
-import styled from 'styled-components';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
@@ -16,15 +15,7 @@ import {
 } from 'ducks/starships/selectors';
 import { makeGetStarshipsRequestState } from 'ducks/fetching/selectors';
 import { IRootState } from 'ducks/reducers';
-
-const Page = styled.div`
-    max-width: 100%;
-    width: 100%;
-    max-height: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-`;
+import {Page} from "components/styled-components-custom";
 
 const getCurrentPage = makeGetCurrentPage();
 const getNextPageNumber = makeGetNextPageNumber();
