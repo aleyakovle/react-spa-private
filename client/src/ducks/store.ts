@@ -5,6 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import {composeWithDevTools} from "redux-devtools-extension";
 import rootReducer, {IRootState} from "./reducers";
 import rootSaga from "./sagas";
+import globalErrorSagaMiddleware from "middlewares/global-error";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +21,7 @@ const store: Store<IRootState> = createStore(
     composeWithDevTools(
         applyMiddleware(
             sagaMiddleware,
+            globalErrorSagaMiddleware,
         )
     ),
 );

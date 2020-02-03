@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
 import { PageContainer } from 'containers/page';
 import { MaterialCard } from 'components/styled-components-custom';
+import {ErrorToastElement} from "components/error-toast";
 
 class RootContainerComposed extends React.Component<any> {
     render() {
@@ -27,6 +28,7 @@ class RootContainerComposed extends React.Component<any> {
                         </Row>
                     </Col>
                 </Row>
+                <ErrorToastElement/>
             </Container>
         );
     }

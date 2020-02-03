@@ -12,7 +12,7 @@ interface ILinearProgress {
     isFetching: boolean;
 }
 
-const LinearProgressElement: React.FC<ILinearProgress> = (props: any) => {
+export const LinearProgressCustom: React.FC<ILinearProgress> = (props: any) => {
     const { isFetching } = props;
 
     const classes = useStyles();
@@ -27,5 +27,3 @@ const LinearProgressElement: React.FC<ILinearProgress> = (props: any) => {
         </div>
     );
 };
-
-export const LinearProgressCustom = LinearProgressElement;
