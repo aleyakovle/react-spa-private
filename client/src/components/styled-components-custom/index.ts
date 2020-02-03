@@ -75,4 +75,8 @@ export const StarShipInfoSpan = styled.span`
     overflow: hidden;
 `;
 
-
+export const StarShipListWrapper = styled.div`
+    &:focus, &:active {
+        border: 3px solid rgba(38,143,255);
+    }
+`;

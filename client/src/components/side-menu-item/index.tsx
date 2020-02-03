@@ -25,7 +25,7 @@ export const SideMenuItem: React.FC<any> = (props: any) => {
     }, [currentPageNumber]);
 
     return (
-        <SideMenuListItem>
+        <SideMenuListItem tabIndex={index + 1}>
             <div onClick={onPageClick}>
                 <span>{liTitle} {renderIsCurrentPage}</span>
             </div>

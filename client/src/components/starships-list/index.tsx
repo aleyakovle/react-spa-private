@@ -4,6 +4,7 @@ import { StarShipsListItem } from 'components/starship-list-item';
 import { useSelector } from 'react-redux';
 import { makeGetStarshipsRequestState } from 'ducks/fetching/selectors';
 import { TenSkeletons } from 'components/custom-skeleton';
+import {StarShipListWrapper} from "components/styled-components-custom";
 
 interface IStarShipsList {
     starships: IStarship[];
@@ -29,7 +30,7 @@ export const StarShipsListComponent: React.FC<IStarShipsList> = (props) => {
                   />
               ));
 
-    return <div>{renderStarships()}</div>;
+    return <StarShipListWrapper tabIndex={0}>{renderStarships()}</StarShipListWrapper>;
 };
 
 export const StarShipsList = StarShipsListComponent;
