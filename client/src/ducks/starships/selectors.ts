@@ -1,7 +1,7 @@
 import { createSimpleSelector } from 'utils/selector-helpers';
 import { IGetStarshipsSuccessResponse, IStarship } from 'dtos/starships';
 import { REMOTE_REST_URL_INITIAL_PAGE } from 'app-constants';
-import {findPageNumber} from "utils/common";
+import { findPageNumber } from 'utils/common';
 
 export const makeGetCurrentPage = () =>
     createSimpleSelector<IGetStarshipsSuccessResponse | undefined>(({ starships }) => starships.currentPage);
@@ -35,7 +35,6 @@ export const makeGetAllPageLinks = () =>
         return unsortedLinksArray.sort();
     });
 
-
 export const makeGetCurrentPageNumber = () =>
     createSimpleSelector<number | undefined>(({ starships }) => {
         if (starships.currentPage) {
@@ -44,10 +43,8 @@ export const makeGetCurrentPageNumber = () =>
             const prevPageNumber = findPageNumber(previous);
             const nextPageNumber = findPageNumber(next);
 
-            const lastPage = !nextPageNumber && prevPageNumber
-            const hasPrevAndNext = nextPageNumber && prevPageNumber && (nextPageNumber - prevPageNumber === 2)
-
-            console.log(prevPageNumber, nextPageNumber, 'prevPageNumber, nextPageNumber');
+            const lastPage = !nextPageNumber && prevPageNumber;
+            const hasPrevAndNext = nextPageNumber && prevPageNumber && nextPageNumber - prevPageNumber === 2;
 
             if (!prevPageNumber) {
                 return 1;
@@ -59,5 +56,4 @@ export const makeGetCurrentPageNumber = () =>
         }
 
         return undefined;
-
     });

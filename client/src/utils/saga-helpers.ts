@@ -39,8 +39,6 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
         const responseMeta = buildResponseActionMeta(action, options);
 
         try {
-            console.log(action, 'action');
-            console.log(options, 'options');
 
             let params = get(action, 'payload', undefined);
 
@@ -52,8 +50,6 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
             const ApiPromise = options.execute(params);
 
             let request: AxiosResponse<IGetStarshipsSuccessResponse> = yield ApiPromise;
-
-            console.log(request, 'request request request');
 
             if (request.status === 200) {
                 const { transformResponse } = options;

@@ -21,7 +21,6 @@ export const SideMenuItem: React.FC<any> = (props: any) => {
     }, []);
 
     const renderIsCurrentPage = useMemo(() => {
-        console.log(currentPageNumber, index, 'currentPageNumber');
         return currentPageNumber === index + 1 ? 'o' : '';
     }, [currentPageNumber]);
 

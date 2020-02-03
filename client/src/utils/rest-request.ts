@@ -46,8 +46,6 @@ class RESTRequest {
             params: requestParams
         } = data as IRESTExecuteParams;
 
-        console.log(requestParams, 'requestParams');
-
         if (!String(requestParams).includes('https://')) {
             return `${this.restURL}${method}/?page=${requestParams}`;
         }
