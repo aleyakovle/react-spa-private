@@ -26,7 +26,7 @@ export const StarShipsListComponent: React.FC<IStarShipsList> = (props) => {
                       model={item.model}
                       passengers={item.passengers}
                       starshipName={item.name}
-                      hyperdrive_rating={item.hyperdrive_rating}
+                      hyperdriveRating={item.hyperdriveRating}
                   />
               ));
 

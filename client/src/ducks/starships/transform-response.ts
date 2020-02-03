@@ -47,5 +47,9 @@ const transformHyperDrive = (obj: IStarship) => {
     } else {
         obj.hyperdrive_rating = "unknown"
     }
+
+    obj.hyperdriveRating = obj.hyperdrive_rating;
+    delete obj.hyperdrive_rating;
+
     return obj;
 };

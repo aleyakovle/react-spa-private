@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, {useLayoutEffect, useMemo, useState} from 'react';
 import { Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import {
@@ -7,18 +7,20 @@ import {
     StarShipInfoWrapper,
     StarShipMainWrapper
 } from 'components/styled-components-custom';
+import {HyperDriveProgressBar} from "components/hyperdive-progress-bar";
+import {getPercentsHyperDrive} from "utils/common";
 // import {buildImgUrl} from "utils/common";
 
 interface IStarShipsListItem {
     starshipName: string;
     passengers: string;
     crew: string;
-    hyperdrive_rating: string;
+    hyperdriveRating: string;
     model: string;
 }
 
 export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) => {
-    const { starshipName, passengers, hyperdrive_rating, crew,
+    const { starshipName, passengers, hyperdriveRating, crew,
         // model
     } = props;
     // const imgURL = buildImgUrl(model, starshipName);
@@ -43,7 +45,7 @@ export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) =>
         return null;
     };
 
-    // src={imageURL} alt=""
+    const percentsHyperDrive = useMemo(() => getPercentsHyperDrive(hyperdriveRating), [hyperdriveRating]);
 
     return (
         <StarShipMainWrapper>
@@ -58,7 +60,7 @@ export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) =>
                         <StarShipInfoSpan>Name: {starshipName} </StarShipInfoSpan>
                         <StarShipInfoSpan>Passengers: {passengers} </StarShipInfoSpan>
                         <StarShipInfoSpan>Crew: {crew} </StarShipInfoSpan>
-                        <StarShipInfoSpan>Hyperdrive_rating: {hyperdrive_rating} </StarShipInfoSpan>
+                        <HyperDriveProgressBar percents={percentsHyperDrive}/>
                     </StarShipInfoWrapper>
                 </Col>
             </Row>
@@ -67,6 +69,3 @@ export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) =>
 };
 
 export const StarShipsListItem = StarShipsListItemElement;
-
-// https://cse.google.com/cse/create/congrats?cx=000712022248097102088%3Aacm5o5queoa
-// AIzaSyCIIUVdRgtfRM0OdgyW91lmwXZbU7pBZDo

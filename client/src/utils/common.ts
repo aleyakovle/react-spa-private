@@ -30,3 +30,13 @@ export const findCurrentPageNumber = (prevPageNumber: number | undefined | null,
 export const buildImgUrl = (model: string, name: string) => {
     return `https://www.googleapis.com/customsearch/v1/?q=${name} ${model}&num=1&start=1&imgSize=medium&searchType=image&key=${kkk}&cx=${cxx}`;
 };
+
+export const getPercentsHyperDrive = (hyperDriveRating: string) => {
+    console.log(hyperDriveRating, 'hyperDriveRating');
+    const hyperDriveRatingToNumber = Number(hyperDriveRating);
+    if (!isNaN(hyperDriveRatingToNumber)) {
+        return hyperDriveRatingToNumber / 6 * 100;
+    }
+
+    return undefined;
+};
