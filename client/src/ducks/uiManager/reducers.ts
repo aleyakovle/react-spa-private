@@ -15,7 +15,7 @@ export const uiManagerReducer = createReducer<IUIManagerState>(initialStateReduc
         }),
     [SET_ERROR_MESSAGE_TOAST]: (state: IUIManagerState, action: any) =>
         produce(state, (draft) => {
-            draft.errorMessage = action.payload.detail;
+            draft.errorMessage = action.payload?.detail ?? undefined;
             return draft;
         }),
 });

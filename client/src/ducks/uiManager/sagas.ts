@@ -5,8 +5,8 @@ import {setErrorMessageToast} from "ducks/uiManager/actions";
 
 const sagas = {
     * [SET_ERROR_MESSAGE_TOAST]() {
-        delay(250);
-        yield put(setErrorMessageToast({detail: undefined}));
+        yield delay(2500);
+        yield put(setErrorMessageToast());
     },
 };
 
