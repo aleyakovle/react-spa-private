@@ -1,15 +1,15 @@
-import React, {useLayoutEffect, useMemo, useState} from 'react';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import {
     StarShipImageWrapper,
     StarShipInfoSpan,
     StarShipInfoWrapper,
-    StarShipMainWrapper
+    StarShipMainWrapper,
 } from 'components/styled-components-custom';
-import {HyperDriveProgressBar} from "components/hyperdive-progress-bar";
-import {getPercentsHyperDrive} from "utils/common";
-import {CircularProgress} from "@material-ui/core";
+import { HyperDriveProgressBar } from 'components/hyperdive-progress-bar';
+import { buildImgUrl, getPercentsHyperDrive } from 'utils/common';
+import { CircularProgress } from '@material-ui/core';
 
 interface IStarShipsListItem {
     starshipName: string;
@@ -20,18 +20,16 @@ interface IStarShipsListItem {
 }
 
 export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
-    const { starshipName, passengers, hyperdriveRating, crew,
-        // model
-    } = props;
-    // const imgURL = buildImgUrl(model, starshipName);
+    const { starshipName, passengers, hyperdriveRating, crew, model } = props;
+    const imgURL = buildImgUrl(model, starshipName);
 
     const [imageURL, setImageURL] = useState(undefined as undefined | string);
 
     useLayoutEffect(() => {
         axios
-            // .get(imgURL)
-            .get('http://')
+            .get(imgURL)
             .then((e) => {
+                console.log(e, 'e');
                 setImageURL(e.data.items[0].link);
             })
             .catch(() => {
@@ -40,8 +38,7 @@ export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
     });
 
     const renderImage = useMemo(() => {
-        return typeof imageURL !== "undefined" ? <StarShipImageWrapper bg={imageURL}/> : <CircularProgress/>;
-
+        return typeof imageURL !== 'undefined' ? <StarShipImageWrapper bg={imageURL} /> : <CircularProgress />;
     }, [imageURL]);
 
     const percentsHyperDrive = useMemo(() => getPercentsHyperDrive(hyperdriveRating), [hyperdriveRating]);
@@ -49,13 +46,15 @@ export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
     return (
         <StarShipMainWrapper>
             <Row>
-                <Col xs={12} sm={6} md={4}>{renderImage}</Col>
+                <Col xs={12} sm={6} md={4}>
+                    {renderImage}
+                </Col>
                 <Col xs={12} sm={6} md={8}>
                     <StarShipInfoWrapper>
                         <StarShipInfoSpan>Name: {starshipName} </StarShipInfoSpan>
                         <StarShipInfoSpan>Passengers: {passengers} </StarShipInfoSpan>
                         <StarShipInfoSpan>Crew: {crew} </StarShipInfoSpan>
-                        <HyperDriveProgressBar percents={percentsHyperDrive}/>
+                        <HyperDriveProgressBar percents={percentsHyperDrive} />
                     </StarShipInfoWrapper>
                 </Col>
             </Row>

@@ -29,9 +29,11 @@ export const PageControlItem = styled.div`
     justify-content: center;
     cursor: ${(props: any) => props.isDisabled ? 'default' : 'pointer' };
     transition: all .2s ease;
-    &:hover {
+    
+    &:focus {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
+    
 ` as any;
 
 export const MaterialCard = styled.div`
@@ -52,7 +54,7 @@ export const StarShipInfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-right: 10px;
+    padding: 10px;
 `;
 
 export const StarShipImageWrapper = styled.div`
@@ -88,8 +90,10 @@ export const StarShipInfoSpan = styled.span`
 `;
 
 export const StarShipListWrapper = styled.div`
-    &:focus, &:active {
-        border: 3px solid rgba(38,143,255);
+    @media screen and (min-width: 960px) {
+        &:focus {
+            border: 3px solid rgba(38,143,255);
+        }
     }
 `;
 
