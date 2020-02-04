@@ -3,13 +3,12 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
-import {
-    persistor,
-    store,
-} from 'ducks/store';
+import { persistor, store } from 'ducks/store';
 import { RootContainer } from 'containers/root';
 
 export const App: React.FC<any> = () => {
+    document.title = 'React SPA';
+
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor} loading={<CircularProgress />}>

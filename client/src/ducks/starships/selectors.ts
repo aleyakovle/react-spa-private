@@ -17,22 +17,25 @@ export const makeGetPrevPageNumber = () =>
 
 export const makeGetAllPageLinks = () =>
     createSimpleSelector<string[]>(({ starships }) => {
-        const unsortedLinksArrayWithDuplicatesAndNulls = starships.pages.reduce(
-            (acc: Array<string | null>, item: IGetStarshipsSuccessResponse) => {
-                return [...acc, item.next, item.previous];
-            },
-            <Array<string | null>>[],
-        );
-        const unsortedLinksArrayWithDuplicatesAndNullsWithInitialPage = [
-            ...unsortedLinksArrayWithDuplicatesAndNulls,
-            REMOTE_REST_URL_INITIAL_PAGE,
-        ];
-        const unsortedLinksArrayWithDuplicates: string[] = unsortedLinksArrayWithDuplicatesAndNullsWithInitialPage.filter(
-            (item: string | null) => typeof item === 'string',
-        ) as string[];
-        const unsortedLinksSet = new Set(unsortedLinksArrayWithDuplicates);
-        const unsortedLinksArray = [...unsortedLinksSet];
-        return unsortedLinksArray.sort();
+        if (starships && starships.pages) {
+            const unsortedLinksArrayWithDuplicatesAndNulls = starships.pages.reduce(
+                (acc: Array<string | null>, item: IGetStarshipsSuccessResponse) => {
+                    return [...acc, item.next, item.previous];
+                },
+                <Array<string | null>>[],
+            );
+            const unsortedLinksArrayWithDuplicatesAndNullsWithInitialPage = [
+                ...unsortedLinksArrayWithDuplicatesAndNulls,
+                REMOTE_REST_URL_INITIAL_PAGE,
+            ];
+            const unsortedLinksArrayWithDuplicates: string[] = unsortedLinksArrayWithDuplicatesAndNullsWithInitialPage.filter(
+                (item: string | null) => typeof item === 'string',
+            ) as string[];
+            const unsortedLinksSet = new Set(unsortedLinksArrayWithDuplicates);
+            const unsortedLinksArray = [...unsortedLinksSet];
+            return unsortedLinksArray.sort();
+        }
+        return [];
     });
 
 export const makeGetCurrentPageNumber = () =>

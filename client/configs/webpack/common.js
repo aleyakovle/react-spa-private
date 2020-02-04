@@ -1,6 +1,7 @@
 // shared config (dev and prod)
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     mode: 'development',
@@ -41,11 +42,15 @@ module.exports = {
                     'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
                 ],
             },
+            {
+                test: /\.ico$/,
+                loader: 'file-loader'
+            },
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: 'index.html.ejs' }),
-
+        new HtmlWebpackPlugin({ template: 'index.html.ejs' ,favicon: resolve(__dirname, '../../src/assets/images/favicon.ico/favicon.ico') }),
+        new ManifestPlugin(),
     ],
     externals: {
         react: 'React',

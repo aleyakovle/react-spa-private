@@ -2,6 +2,7 @@
 const merge = require('webpack-merge');
 const {resolve} = require('path');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const commonConfig = require('./common');
 
@@ -22,4 +23,8 @@ module.exports = merge(commonConfig, {
             skipWaiting: true,
         }),
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+    },
 });
