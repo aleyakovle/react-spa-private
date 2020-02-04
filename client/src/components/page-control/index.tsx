@@ -23,8 +23,10 @@ const PageControlComposed: React.FC<IPageControl> = (props) => {
         );
     }, [direction, isDisabled]);
 
+    const onEnterPress = (e: any) => (e.key === 'Enter' ? onClick() : undefined);
+
     return (
-        <PageControlItem isDisabled={isDisabled} onClick={onClick}>
+        <PageControlItem onKeyPress={onEnterPress} tabIndex={10} isDisabled={isDisabled} onClick={onClick}>
             {renderArrow}
         </PageControlItem>
     );

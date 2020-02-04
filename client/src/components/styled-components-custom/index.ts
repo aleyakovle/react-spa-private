@@ -75,14 +75,8 @@ export const SideMenuListItem = styled.li`
     margin: 0;
     padding: 0;
     text-overflow: ellipsis;
-    color: #007bff;
     cursor: pointer;
-    opacity: .75;
     white-space: nowrap;
-    transition: opacity 0.2s ease;
-    &:hover {
-        opacity: 1;
-    }
 `;
 
 export const StarShipInfoSpan = styled.span`
@@ -114,5 +108,12 @@ export const HyperDriveRatingProgress = styled.div`
 ` as any;
 
 export const SideMenuItemSpan = styled.span`
-    text-decoration: ${(props: any) => props.isCurrentPage ? 'underline #3fb6da' : 'none'};
+    text-decoration: ${(props: any) => props.isCurrentPage ? 'underline' : 'none'};
+    opacity: ${(props: any) => props.isCurrentPage ? 1 : .75};
+    letter-spacing: 1.2px;
+    
+    transition: opacity 0.2s ease;
+    &:hover {
+        opacity: 1;
+    }
 ` as any;
