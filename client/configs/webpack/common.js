@@ -1,7 +1,7 @@
 // shared config (dev and prod)
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -49,8 +49,12 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: 'index.html.ejs' ,favicon: resolve(__dirname, '../../src/assets/images/favicon.ico/favicon.ico') }),
-        new ManifestPlugin(),
+        new HtmlWebpackPlugin({ template: 'index.html.ejs', favicon: resolve(__dirname, '../../src/assets/images/favicon.ico/favicon.ico') }),
+        new CopyPlugin([
+            { from: resolve(__dirname, '../../manifest.json'), to: resolve(__dirname, '../../dist/manifest.json') },
+            { from: resolve(__dirname, '../../src/assets/images/Icon-192.png'), to: resolve(__dirname, '../../dist/img/Icon-192.png') },
+            { from: resolve(__dirname, '../../src/assets/images/react_logo_512.png'), to: resolve(__dirname, '../../dist/img/react_logo_512.png') },
+        ]),
     ],
     externals: {
         react: 'React',

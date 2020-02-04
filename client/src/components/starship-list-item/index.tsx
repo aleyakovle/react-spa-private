@@ -27,9 +27,11 @@ export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
 
     useLayoutEffect(() => {
         axios
-            .get(imgURL)
+            // .get(imgURL)
+            .get('//')
             .then((e) => {
                 console.log(e, 'e');
+                console.log(imgURL, 'imgURL');
                 setImageURL(e.data.items[0].link);
             })
             .catch(() => {

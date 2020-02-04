@@ -3,12 +3,7 @@
   "name": "React SPA",
   "icons": [
     {
-      "src": "/img/Icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/img/react_logo_512.png",
+      "src": "/assets/images/react_logo_512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
