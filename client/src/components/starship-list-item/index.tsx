@@ -19,7 +19,7 @@ interface IStarShipsListItem {
     model: string;
 }
 
-export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) => {
+export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
     const { starshipName, passengers, hyperdriveRating, crew,
         // model
     } = props;
@@ -67,5 +67,3 @@ export const StarShipsListItemElement: React.FC<IStarShipsListItem> = (props) =>
         </StarShipMainWrapper>
     );
 };
-
-export const StarShipsListItem = StarShipsListItemElement;
