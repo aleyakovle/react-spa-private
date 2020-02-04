@@ -1,4 +1,5 @@
 import React from 'react';
+import {HyperDriveRatingBack, HyperDriveRatingProgress} from "components/styled-components-custom";
 
 interface IHyperdriveProgressBar {
     percents?: number;
@@ -7,11 +8,11 @@ interface IHyperdriveProgressBar {
 export const HyperDriveProgressBar: React.FC<IHyperdriveProgressBar> = (props: any) => {
     const { percents } = props;
 
-    const backgroundColor = typeof percents === 'undefined' ? 'grey' : 'blue';
+    const backgroundColor = typeof percents === 'undefined' ? 'lightgray' : '#3fb6da66';
 
     return (
-        <div style={{ width: '100%', backgroundColor, borderRadius: 4, overflow: 'hidden' }}>
-            <div style={{ height: 10, backgroundColor: 'green', width: `${percents ? percents : 0}%` }}/>
-        </div>
+        <HyperDriveRatingBack bgColor={backgroundColor}>
+            <HyperDriveRatingProgress width={percents ? percents : 0}/>
+        </HyperDriveRatingBack>
     );
 };

@@ -9,7 +9,7 @@ import {
 } from 'components/styled-components-custom';
 import {HyperDriveProgressBar} from "components/hyperdive-progress-bar";
 import {getPercentsHyperDrive} from "utils/common";
-// import {buildImgUrl} from "utils/common";
+import {CircularProgress} from "@material-ui/core";
 
 interface IStarShipsListItem {
     starshipName: string;
@@ -25,7 +25,7 @@ export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
     } = props;
     // const imgURL = buildImgUrl(model, starshipName);
 
-    const [imageURL, setImageURL] = useState(undefined);
+    const [imageURL, setImageURL] = useState(undefined as undefined | string);
 
     useLayoutEffect(() => {
         axios
@@ -35,26 +35,21 @@ export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
                 setImageURL(e.data.items[0].link);
             })
             .catch(() => {
-                setImageURL(undefined);
+                setImageURL('');
             });
     });
 
-    const renderImage = () => {
-        console.log(imageURL);
-        // return imageURL ? <StarShipImageWrapper  /> : <span>image not available</span>;
-        return null;
-    };
+    const renderImage = useMemo(() => {
+        return typeof imageURL !== "undefined" ? <StarShipImageWrapper bg={imageURL}/> : <CircularProgress/>;
+
+    }, [imageURL]);
 
     const percentsHyperDrive = useMemo(() => getPercentsHyperDrive(hyperdriveRating), [hyperdriveRating]);
 
     return (
         <StarShipMainWrapper>
             <Row>
-                <div style={{ display: "none" }}>
-                    <Col xs={12} sm={4}>{renderImage()}</Col>
-                </div>
-
-                <Col xs={12} sm={6} md={4}><StarShipImageWrapper  /></Col>
+                <Col xs={12} sm={6} md={4}>{renderImage}</Col>
                 <Col xs={12} sm={6} md={8}>
                     <StarShipInfoWrapper>
                         <StarShipInfoSpan>Name: {starshipName} </StarShipInfoSpan>

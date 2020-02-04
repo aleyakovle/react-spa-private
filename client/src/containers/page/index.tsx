@@ -11,11 +11,11 @@ import {
     makeGetCurrentPage,
     makeGetCurrentPageStarships,
     makeGetNextPageNumber,
-    makeGetPrevPageNumber
+    makeGetPrevPageNumber,
 } from 'ducks/starships/selectors';
 import { makeGetStarshipsRequestState } from 'ducks/fetching/selectors';
 import { IRootState } from 'ducks/reducers';
-import {MaterialCard, Page} from "components/styled-components-custom";
+import { MaterialCard, Page } from 'components/styled-components-custom';
 
 const getCurrentPage = makeGetCurrentPage();
 const getNextPageNumber = makeGetNextPageNumber();
@@ -66,12 +66,13 @@ class PageContainerComposed extends React.Component<any> {
                 <Col xs={12}>
                     <Row>
                         <Col xs={2}>
-                            <PageControl
-                                isActive={isFetching}
-                                isDisabled={!prevPageNumber}
-                                onClick={this.onPrevClick}
-                                title={'Prev'}
-                            />
+                            <Row>
+                                <PageControl
+                                    isDisabled={!prevPageNumber}
+                                    onClick={this.onPrevClick}
+                                    direction={"prev"}
+                                />
+                            </Row>
                         </Col>
                         <Col xs={8}>
                             <MaterialCard>
@@ -80,12 +81,13 @@ class PageContainerComposed extends React.Component<any> {
                             </MaterialCard>
                         </Col>
                         <Col xs={2}>
-                            <PageControl
-                                isActive={isFetching}
-                                isDisabled={!nextPageNumber}
-                                onClick={this.onNextClick}
-                                title={'Next'}
-                            />
+                            <Row>
+                                <PageControl
+                                    isDisabled={!nextPageNumber}
+                                    onClick={this.onNextClick}
+                                    direction={"next"}
+                                />
+                            </Row>
                         </Col>
                     </Row>
                 </Col>
