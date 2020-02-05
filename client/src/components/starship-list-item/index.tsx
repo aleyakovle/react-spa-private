@@ -24,14 +24,10 @@ export const StarShipsListItem: React.FC<IStarShipsListItem> = (props) => {
     const imgURL = buildImgUrl(model, starshipName);
 
     const [imageURL, setImageURL] = useState(undefined as undefined | string);
-
     useLayoutEffect(() => {
         axios
-            // .get(imgURL)
-            .get('//')
+            .get(imgURL)
             .then((e) => {
-                console.log(e, 'e');
-                console.log(imgURL, 'imgURL');
                 setImageURL(e.data.items[0].link);
             })
             .catch(() => {
