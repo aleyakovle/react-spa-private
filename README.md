@@ -1,4 +1,4 @@
-###Test React Project
+### Test React Project
 
 [Demonstration](https://master.d9e7cibztf1ba.amplifyapp.com/)
 
@@ -30,5 +30,5 @@ If your system has necessary requirements, follow the steps below.
 + `npm ci`
 3. If you want to run this example
 + Dev version `npm run start-dev`. You will need CORS extension possibly.
-+ Prod version `npm run start-dev`.
++ Prod version `npm run start-prod`.
 
