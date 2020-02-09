@@ -1,6 +1,6 @@
-import axios from "axios";
-import {IAjaxActionCreators} from "utils/action-helpers";
-import {REMOTE_REST_URL} from "app-constants";
+import axios from 'axios';
+import { IAjaxActionCreators } from 'utils/action-helpers';
+import { REMOTE_REST_URL } from 'app-constants';
 
 export interface IAPISchemaSimple {
     methodName: string;
@@ -25,15 +25,15 @@ export interface IRESTExecuteParams {
 }
 
 export type IRESTCallSchema<K extends string = string> = {
-    [T in K]: IAPISchemaSimple
+    [T in K]: IAPISchemaSimple;
 };
 
 export type IRESTCallParams<K extends string = string> = {
-    [T in K]: IRequestCallParams
+    [T in K]: IRequestCallParams;
 };
 
 export interface ISendRPCResponseOptions {
-    contentType: "application/json";
+    contentType: 'application/json';
     data: IRESTExecuteParams;
 }
 
@@ -41,10 +41,7 @@ class RESTRequest {
     private restURL = REMOTE_REST_URL;
 
     private createValidRESTObject = (data: IRESTExecuteParams) => {
-        const {
-            methodName: method,
-            params: requestParams
-        } = data as IRESTExecuteParams;
+        const { methodName: method, params: requestParams } = data as IRESTExecuteParams;
 
         if (!String(requestParams).includes('https://')) {
             return `${this.restURL}${method}/?page=${requestParams}`;
@@ -57,54 +54,43 @@ class RESTRequest {
         return axios.get(url);
     };
 
-    private simpleFactory = (
-        request: IRESTExecuteParams
-    ) => {
+    private simpleFactory = (request: IRESTExecuteParams) => {
         return this.sendResponse({
-            contentType: "application/json",
-            data: request
+            contentType: 'application/json',
+            data: request,
         });
     };
 
-
-    public buildSchema = <K extends string = string>(
-        schema: IRESTCallSchema<K>
-    ): IRESTCallParams<K> => {
+    public buildSchema = <K extends string = string>(schema: IRESTCallSchema<K>): IRESTCallParams<K> => {
         if (!Object.keys(schema).length) {
             return {} as IRESTCallParams<K>;
         }
 
-        const keyValueDictionary: Array<[string, IAPISchemaSimple]> = Array.from(
-            Object.entries(schema)
-        );
+        const keyValueDictionary: Array<[string, IAPISchemaSimple]> = Array.from(Object.entries(schema));
 
-        return keyValueDictionary.reduce(
-            (accumulator: IRESTCallParams<K>, current) => {
-                const [method, params] = current;
+        return keyValueDictionary.reduce((accumulator: IRESTCallParams<K>, current) => {
+            const [method, paramsOld] = current;
 
-                const methodName = params.methodName;
-                const currentCallSchema: IRequestCallParams = {
-                    actions: params.actions,
-                    transformRequest: params.transformRequest,
-                    transformResponse: params.transformResponse,
-                    execute: (params: any) => {
-                        const request: IRESTExecuteParams = {
-                            params,
-                            methodName
-                        };
+            const { methodName } = paramsOld;
+            const currentCallSchema: IRequestCallParams = {
+                actions: paramsOld.actions,
+                transformRequest: paramsOld.transformRequest,
+                transformResponse: paramsOld.transformResponse,
+                execute: (params: any) => {
+                    const request: IRESTExecuteParams = {
+                        params,
+                        methodName,
+                    };
 
-                        return this.simpleFactory(request);
-                    }
-                };
+                    return this.simpleFactory(request);
+                },
+            };
 
-                return {
-                    ...accumulator,
-                    [method]: currentCallSchema
-                };
-            },
-            {} as IRESTCallParams<K>
-        );
-
+            return {
+                ...accumulator,
+                [method]: currentCallSchema,
+            };
+        }, {} as IRESTCallParams<K>);
     };
 }
 

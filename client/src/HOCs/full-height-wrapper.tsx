@@ -1,5 +1,5 @@
 import React from 'react';
-import {FullHeight} from "components/styled-components-custom";
+import { FullHeight } from 'components/styled-components-custom';
 
 export function FullHeightWrapper(RawComponent: any): any {
     return class extends React.Component {
@@ -8,7 +8,7 @@ export function FullHeightWrapper(RawComponent: any): any {
                 <FullHeight>
                     <RawComponent {...this.props} />
                 </FullHeight>
-            )
+            );
         }
-    }
+    };
 }

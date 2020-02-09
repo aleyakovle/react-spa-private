@@ -1,5 +1,5 @@
 import React from 'react';
-import {HyperDriveRatingBack, HyperDriveRatingProgress} from "components/styled-components-custom";
+import { HyperDriveRatingBack, HyperDriveRatingProgress } from 'components/styled-components-custom';
 
 interface IHyperdriveProgressBar {
     percents?: number;
@@ -12,7 +12,7 @@ export const HyperDriveProgressBar: React.FC<IHyperdriveProgressBar> = (props: a
 
     return (
         <HyperDriveRatingBack bgColor={backgroundColor}>
-            <HyperDriveRatingProgress width={percents ? percents : 0}/>
+            <HyperDriveRatingProgress width={percents || 0} />
         </HyperDriveRatingBack>
     );
 };

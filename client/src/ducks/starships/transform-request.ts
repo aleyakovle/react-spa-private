@@ -1,4 +1,4 @@
-import {REMOTE_REST_URL} from "app-constants";
+import { REMOTE_REST_URL } from 'app-constants';
 
 export const makePageRequestValid = (request: any) => {
     if (typeof request === 'undefined') {

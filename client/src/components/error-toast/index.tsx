@@ -1,7 +1,7 @@
 import React from 'react';
 import { Snackbar } from '@material-ui/core';
-import {useSelector} from "react-redux";
-import {makeGetErrorMessage} from "ducks/uiManager/selectors";
+import { useSelector } from 'react-redux';
+import { makeGetErrorMessage } from 'ducks/uiManager/selectors';
 
 export const ErrorToastElement: React.FC<any> = () => {
     const error = useSelector(makeGetErrorMessage());

@@ -6,16 +6,16 @@ import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
 import { PageContainer } from 'containers/page';
 import { MaterialCard } from 'components/styled-components-custom';
-import {ErrorToastElement} from "components/error-toast";
+import { ErrorToastElement } from 'components/error-toast';
 
 class RootContainerComposed extends React.Component<any> {
     render() {
         return (
-            <Container fluid={true}>
+            <Container fluid>
                 <Row>
                     <Col xs={12}>
                         <Row>
-                            <Col className={'d-none d-sm-block'} sm={3} md={2}>
+                            <Col className="d-none d-sm-block" sm={3} md={2}>
                                 <MaterialCard>
                                     <SideMenuContainer />
                                 </MaterialCard>
@@ -28,7 +28,7 @@ class RootContainerComposed extends React.Component<any> {
                         </Row>
                     </Col>
                 </Row>
-                <ErrorToastElement/>
+                <ErrorToastElement />
             </Container>
         );
     }

@@ -23,7 +23,7 @@ export const LinearProgressCustom: React.FC<ILinearProgress> = (props: any) => {
 
     return (
         <div className={classes.root}>
-            <LinearProgress color={'primary'} />
+            <LinearProgress color="primary" />
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { StarShipsListItem } from 'components/starship-list-item';
 import { useSelector } from 'react-redux';
 import { makeGetStarshipsRequestState } from 'ducks/fetching/selectors';
 import { TenSkeletons } from 'components/custom-skeleton';
-import {StarShipListWrapper} from "components/styled-components-custom";
+import { StarShipListWrapper } from 'components/styled-components-custom';
 
 interface IStarShipsList {
     starships: IStarship[];

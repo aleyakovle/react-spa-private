@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn run clean-dist && webpack -p --config=client/configs/webpack/prod.js",
     "clean-dist": "rimraf client/dist/*",
-    "lint": "tslint 'client/src/**/*.ts*' --format stylish --project . --force",
+    "lint": "eslint ./client/src/**/*.*",
     "start-dev": "webpack-dev-server --config=client/configs/webpack/dev.js",
     "start-prod": "yarn run build && node backend/app.js",
     "test": "jest test --config=client/configs/jest.config.js"

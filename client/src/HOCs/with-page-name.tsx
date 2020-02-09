@@ -1,5 +1,5 @@
-import React, {ComponentClass, ComponentType} from 'react';
-import {usePageUrl} from "utils/hooks";
+import React, { ComponentClass, ComponentType } from 'react';
+import { usePageUrl } from 'utils/hooks';
 
 export function withPageNameHOC(RawComponent: ComponentClass | ComponentType) {
     return (props: any) => {

@@ -1,4 +1,3 @@
-import {IRootState} from "ducks/reducers";
+import { IRootState } from 'ducks/reducers';
 
-export const makeGetStarshipsRequestState = () => (state: IRootState) =>
-    state.fetching.getStarships;
+export const makeGetStarshipsRequestState = () => (state: IRootState) => state.fetching.getStarships;

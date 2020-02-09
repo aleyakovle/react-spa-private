@@ -2,7 +2,7 @@ import { createReducer } from 'redux-create-reducer';
 import produce from 'immer';
 import { GET_STARSHIPS } from 'ducks/starships/action-types';
 import { IGetStarshipsSuccessResponse } from 'dtos/starships';
-import {findCurrentPageNumber, findPageNumber} from "utils/common";
+import { findCurrentPageNumber, findPageNumber } from 'utils/common';
 
 export interface IStarshipsState {
     currentPage?: IGetStarshipsSuccessResponse;
@@ -18,13 +18,11 @@ export const starshipReducer = createReducer<IStarshipsState>(initialStateReduce
         produce(state, (draft) => {
             const pagesNew = [...state.pages];
 
-            const possibleIndexOf = pagesNew.findIndex(item => {
+            const possibleIndexOf = pagesNew.findIndex((item) => {
                 const safePrevious = findPageNumber(item.previous);
                 const safeNext = findPageNumber(item.next);
                 const safePayload = findPageNumber(action.payload);
-                if (findCurrentPageNumber(safePrevious, safeNext) === safePayload) {
-                    return true;
-                }
+                return findCurrentPageNumber(safePrevious, safeNext) === safePayload;
             });
 
             if (possibleIndexOf !== -1) {
@@ -37,7 +35,7 @@ export const starshipReducer = createReducer<IStarshipsState>(initialStateReduce
         produce(state, (draft) => {
             const pagesNew = [...state.pages];
 
-            if (!pagesNew.some(item => item.next === action.payload.next)) {
+            if (!pagesNew.some((item) => item.next === action.payload.next)) {
                 pagesNew.push(action.payload);
             }
 

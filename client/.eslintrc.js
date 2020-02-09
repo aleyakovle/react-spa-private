@@ -25,11 +25,14 @@ module.exports = {
     },
     plugins: ['react'],
     ignorePatterns: ["__tests__", "node_modules/"],
+    env: {
+        "browser": true,
+    },
     rules: {
         'import/no-unresolved': 0,
         'react/no-array-index-key': 1,
         'react/jsx-curly-brace-presence': 1,
-        'import/order': 1,
+        'import/order': 2,
         'import/extensions': 0,
         'import/no-extraneous-dependencies': 0,
         '@typescript-eslint/no-var-requires': 0,
@@ -85,6 +88,43 @@ module.exports = {
                 extensions: ['.jsx', '.tsx'],
             },
         ],
+        "react/sort-comp": [2, {
+            order: [
+                'static-methods',
+                'lifecycle',
+                'everything-else',
+                'render'
+            ],
+            groups: {
+                lifecycle: [
+                    'displayName',
+                    'propTypes',
+                    'contextTypes',
+                    'childContextTypes',
+                    'mixins',
+                    'statics',
+                    'defaultProps',
+                    'constructor',
+                    'getDefaultProps',
+                    'state',
+                    'getInitialState',
+                    'getChildContext',
+                    'getDerivedStateFromProps',
+                    'componentWillMount',
+                    'UNSAFE_componentWillMount',
+                    'componentDidMount',
+                    'componentWillReceiveProps',
+                    'UNSAFE_componentWillReceiveProps',
+                    'shouldComponentUpdate',
+                    'componentWillUpdate',
+                    'UNSAFE_componentWillUpdate',
+                    'getSnapshotBeforeUpdate',
+                    'componentDidUpdate',
+                    'componentDidCatch',
+                    'componentWillUnmount'
+                ]
+            }
+        }],
         'jsx-a11y/accessible-emoji': 0,
         'react/static-property-placement': 0,
         '@typescript-eslint/explicit-member-accessibility': [1, { accessibility: 'no-public' }],

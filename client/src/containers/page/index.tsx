@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import { FullHeightWrapper } from 'HOCs/full-height-wrapper';
-import { getStarships } from 'ducks/starships/actions';
+import { getStarships as getStarshipsAction } from 'ducks/starships/actions';
 import { StarShipsList } from 'components/starships-list';
 import { LinearProgressCustom } from 'components/linear-progress';
 import { PageControl } from 'components/page-control';
@@ -36,7 +36,7 @@ const mapStateToProps = (state: IRootState) => {
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     return {
         getStarships: (data: number | undefined) => {
-            dispatch(getStarships.request(data, undefined));
+            dispatch(getStarshipsAction.request(data, undefined));
         },
     };
 };
@@ -67,11 +67,7 @@ class PageContainerComposed extends React.Component<any> {
                     <Row>
                         <Col xs={2}>
                             <Row>
-                                <PageControl
-                                    isDisabled={!prevPageNumber}
-                                    onClick={this.onPrevClick}
-                                    direction={"prev"}
-                                />
+                                <PageControl isDisabled={!prevPageNumber} onClick={this.onPrevClick} direction="prev" />
                             </Row>
                         </Col>
                         <Col xs={8}>
@@ -82,11 +78,7 @@ class PageContainerComposed extends React.Component<any> {
                         </Col>
                         <Col xs={2}>
                             <Row>
-                                <PageControl
-                                    isDisabled={!nextPageNumber}
-                                    onClick={this.onNextClick}
-                                    direction={"next"}
-                                />
+                                <PageControl isDisabled={!nextPageNumber} onClick={this.onNextClick} direction="next" />
                             </Row>
                         </Col>
                     </Row>

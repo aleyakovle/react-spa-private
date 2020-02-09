@@ -39,7 +39,6 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
         const responseMeta = buildResponseActionMeta(action, options);
 
         try {
-
             let params = get(action, 'payload', undefined);
 
             const { transformRequest } = options;
@@ -60,7 +59,6 @@ export const apiRequestSaga = (options: IRequestCallParams): ISagaWrapper =>
                 }
 
                 yield put(actionSuccess(data, responseMeta));
-
             } else {
                 throw new Error('Not acceptable answer');
             }

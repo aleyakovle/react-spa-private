@@ -20,7 +20,7 @@ export const CustomSkeletonTextLine: React.FC<any> = () => {
 };
 
 export const CustomSkeletonImage: React.FC<any> = () => {
-    return <Skeleton variant="rect" width={'100%'} height={'100%'} />;
+    return <Skeleton variant="rect" width="100%" height="100%" />;
 };
 
 export const CustomSkeletonStarshipInfo: React.FC<any> = () => {
@@ -40,7 +40,7 @@ export const CustomSkeletonStarship: React.FC<any> = () => {
         <StarShipMainWrapper>
             <Row>
                 <Col xs={12} sm={4}>
-                    {<CustomSkeletonImage />}
+                    <CustomSkeletonImage />
                 </Col>
                 <Col xs={12} sm={8}>
                     <StarShipInfoWrapper>

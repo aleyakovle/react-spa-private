@@ -1,10 +1,10 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useLocation} from "react-router";
-import {Dispatch, useMemo} from "react";
-import {IRootState} from "ducks/reducers";
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import { Dispatch, useMemo } from 'react';
+import { IRootState } from 'ducks/reducers';
 
 export const useMapState = <T = any>(mapState: (state: IRootState) => T, deps: any[] = []) => {
-    const state: any = useSelector((state) => state);
+    const state: any = useSelector((defaultState) => defaultState);
 
     return useMemo(() => mapState(state), [state, ...deps]);
 };

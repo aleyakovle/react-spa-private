@@ -1,6 +1,6 @@
-import reducerFetching from "./reducers";
-import * as selectorsFetching from "./selectors";
+import reducerFetching from './reducers';
+import * as selectorsFetching from './selectors';
 
-export {reducerFetching, selectorsFetching};
+export { reducerFetching, selectorsFetching };
 
-export * from "./reducers";
+export * from './reducers';

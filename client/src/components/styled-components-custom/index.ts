@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {images} from "assets/images";
+import styled from 'styled-components';
+import { images } from 'assets/images';
 
 export const Page = styled.div`
     max-width: 100%;
@@ -25,15 +25,14 @@ export const PageControlItem = styled.div`
     border-radius: 4px;
     position: fixed;
     align-items: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     justify-content: center;
-    cursor: ${(props: any) => props.isDisabled ? 'default' : 'pointer' };
-    transition: all .2s ease;
-    
+    cursor: ${(props: any) => (props.isDisabled ? 'default' : 'pointer')};
+    transition: all 0.2s ease;
+
     &:focus {
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
-    
 ` as any;
 
 export const MaterialCard = styled.div`
@@ -41,12 +40,12 @@ export const MaterialCard = styled.div`
     margin: 20px 0;
     width: 100%;
     height: calc(100% - 40px);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     overflow: hidden;
 `;
 
 export const StarShipMainWrapper = styled.div`
-    border-bottom: 1px solid rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     width: 100%;
 `;
 
@@ -60,7 +59,7 @@ export const StarShipInfoWrapper = styled.div`
 export const StarShipImageWrapper = styled.div`
     display: block;
     width: 100%;
-    background: url(${(props: any) => props.bg ? props.bg : images.defaultCover.default});
+    background: url(${(props: any) => (props.bg ? props.bg : images.defaultCover.default)});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -92,7 +91,7 @@ export const StarShipInfoSpan = styled.span`
 export const StarShipListWrapper = styled.div`
     @media screen and (min-width: 960px) {
         &:focus {
-            border: 3px solid rgba(38,143,255);
+            border: 3px solid rgba(38, 143, 255);
         }
     }
 `;
@@ -112,10 +111,10 @@ export const HyperDriveRatingProgress = styled.div`
 ` as any;
 
 export const SideMenuItemSpan = styled.span`
-    text-decoration: ${(props: any) => props.isCurrentPage ? 'underline' : 'none'};
-    opacity: ${(props: any) => props.isCurrentPage ? 1 : .75};
+    text-decoration: ${(props: any) => (props.isCurrentPage ? 'underline' : 'none')};
+    opacity: ${(props: any) => (props.isCurrentPage ? 1 : 0.75)};
     letter-spacing: 1.2px;
-    
+
     transition: opacity 0.2s ease;
     &:hover {
         opacity: 1;
