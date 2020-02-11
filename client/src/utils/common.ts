@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { cxx, kkk } from 'app-constants';
+import {cxx, kkk, pageParameterRegex, urlRegex} from 'app-constants';
 
 export const useTitleFromURL = (url: string) => {
     return useMemo(() => findPageNumber(url), []);
@@ -44,4 +44,8 @@ export const getPercentsHyperDrive = (hyperDriveRating: string) => {
     }
 
     return undefined;
+};
+
+export const isValidURL = (url: any) => {
+    return !!(url && url.match && url.match(urlRegex)?.length && url.match(pageParameterRegex)?.length);
 };

@@ -1,8 +1,9 @@
-import { REMOTE_REST_URL } from 'app-constants';
+import { REMOTE_REST_URL_INITIAL_PAGE } from 'app-constants';
+import { isValidURL } from 'utils/common';
 
 export const makePageRequestValid = (request: any) => {
-    if (typeof request === 'undefined') {
-        request = `${REMOTE_REST_URL}starships/?page=1`;
+    if (!isValidURL(request)) {
+        return REMOTE_REST_URL_INITIAL_PAGE;
     }
     return request;
 };
